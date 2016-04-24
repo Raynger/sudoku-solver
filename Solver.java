@@ -94,7 +94,7 @@ public class Solver {
 		
 		for(int i = 0; i < 3; i++){
 			for(int j = 0; j < 3; j++){
-				int n = game.getNum(startRow, startCol);
+				int n = game.getNum(startRow+i, startCol+j);
 				isValid[n] = false;
 			}
 		}
