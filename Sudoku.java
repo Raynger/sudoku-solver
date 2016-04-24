@@ -15,11 +15,17 @@ class Sudoku{
     Sudoku(){
         grid = new int[9][9];
     }
-
-    public void initialise() throws FileNotFoundException{
+    
+    /**
+     * Reads in the initial game state from file into a 2-D array,
+     * representing the Sudoku grid. 
+     */
+    public void fillGrid() throws FileNotFoundException{
     	Scanner sc = null;
+    	
+    	//Checks if there is a file.
     	try{
-            Scanner sc = new Scanner(new FileReader("game.txt"));
+            sc = new Scanner(new FileReader("game.txt"));
     	} catch (FileNotFoundException e){
     		throw new FileNotFoundException("File not found. Make sure you have a file called 'game.txt' in the directory");
     	}
@@ -43,15 +49,27 @@ class Sudoku{
     public void printGrid(){
     	for(int i = 0; i < 9; i++){
     		for(int j = 0; j < 9; j++){
-        		System.out.print(grid[i][j]);
+    			if(grid[i][j] == 0){
+    				System.out.print("_");
+    			} else{
+            		System.out.print(grid[i][j]);
+    			}
     		}
     		System.out.println();
     	}
     }
     
-    public static void main(String[] args) throws Exception{
-    	Sudoku game = new Sudoku();
-    	game.initialise();
-    	game.printGrid();
+    /**
+     * @return the number located at the row and column in the grid
+     */
+    public int getNum(int row, int col){
+    	return grid[row][col];
+    }
+    
+    /**
+     * Sets a number in the grid given the row and column
+     */
+    public void setNum(int row, int col, int num){
+    	grid[row][col] = num;
     }
 }
